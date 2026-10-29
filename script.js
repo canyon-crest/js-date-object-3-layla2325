@@ -98,6 +98,7 @@ interval = setInterval(time, 10);
 
 // STEP 13: Create a variable to track whether the timer is
 //          currently running (let running = true;)
+let running = true;
 
 // STEP 14: Add a click event listener to the button (ID "myBtn").
 //          Inside the listener:
@@ -110,3 +111,17 @@ interval = setInterval(time, 10);
 //             - Start a new setInterval (same as STEP 12)
 //             - Change button innerHTML to "Stop"
 //             - Set running to true
+const myBtn = document.getElementById("myBtn");
+
+myBtn.addEventListener('click', function() {
+    if (running) {
+        clearInterval(interval);
+        myBtn.innerHTML = "Start";
+        running = false;
+    } else {
+        startTime = new Date().getTime();
+        interval = setInterval(time, 10);
+        myBtn.innerHTML = "Stop";
+        running = true;
+    }
+});
