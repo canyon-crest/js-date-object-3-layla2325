@@ -16,24 +16,27 @@
 // element with ID "warmUpDate".
 
 // STEP 1: Create a new Date object using: let now = new Date();
-let d = new Date();
+let now = new Date();
 
 // STEP 2: Use .getDay() to get the day of the week as a number.
 //         Sunday = 0, Monday = 1, Tuesday = 2, ... Saturday = 6
-let dayNumber = now.getDay();
+let dayNum = now.getDay();
 
 // STEP 3: Create an array of day names:
 //         let days = ["Sunday", "Monday", "Tuesday", "Wednesday",
 //                     "Thursday", "Friday", "Saturday"];
-const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
 // STEP 4: Use the day number as an index to get the day name
 //         from the array.
-let dayName = days[dayNumber];
+let dayName = days[dayNum];
 
 // STEP 5: Display the day name in the element with ID "warmUpDate"
 //         using document.getElementById("warmUpDate").innerHTML
-document.getElementById("warmUpDate").innerHTML = dayName;
+let warmUpDateEl = document.getElementById("warmUpDate");
+if (warmUpDateEl) {
+    warmUpDateEl.innerHTML = dayName;
+}
 
 // ============================================
 //  PART 1: Current Date Display
@@ -57,7 +60,10 @@ let year = now.getFullYear();
 
 // STEP 10: Build the date string: month + "/" + day + "/" + year
 //          Display it in the element with ID "myDate"
-document.getElementById("myDate").innerHTML = month + "/" + date + "/" + year;
+let myDateEl = document.getElementById("myDate");
+if (myDateEl) {
+    myDateEl.innerHTML = month + "/" + date + "/" + year;
+}
 
 // ============================================
 //  PART 2: Elapsed Timer
@@ -81,8 +87,11 @@ let interval;
 
 function time() {
     let currentTime = new Date().getTime();
-    let elapsedSeconds = (currentTime - startTime) / 1000;
-    document.getElementById("myTimer").innerHTML = elapsedSeconds.toFixed(3);
+    let elapsed = (currentTime - startTime) / 1000;
+    let myTimerEl = document.getElementById("myTimer");
+    if (myTimerEl) {
+        myTimerEl.innerHTML = elapsed.toFixed(3);
+    }
 }
 interval = setInterval(time, 10);
 
@@ -111,17 +120,19 @@ let running = true;
 //             - Start a new setInterval (same as STEP 12)
 //             - Change button innerHTML to "Stop"
 //             - Set running to true
-const myBtn = document.getElementById("myBtn");
+let myBtn = document.getElementById("myBtn");
 
-myBtn.addEventListener('click', function() {
-    if (running) {
-        clearInterval(interval);
-        myBtn.innerHTML = "Start";
-        running = false;
-    } else {
-        startTime = new Date().getTime();
-        interval = setInterval(time, 10);
-        myBtn.innerHTML = "Stop";
-        running = true;
-    }
-});
+if (myBtn) {
+    myBtn.addEventListener('click', function () {
+        if (running) {
+            clearInterval(interval);
+            myBtn.innerHTML = "Start";
+            running = false;
+        } else {
+            startTime = new Date().getTime();
+            interval = setInterval(time, 10);
+            myBtn.innerHTML = "Stop";
+            running = true;
+        }
+    });
+}
