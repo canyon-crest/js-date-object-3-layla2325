@@ -47,14 +47,17 @@ document.getElementById("warmUpDate").innerHTML = dayName;
 // STEP 7: Get the month using .getMonth()
 //         IMPORTANT: .getMonth() returns 0–11 (January = 0)
 //         so you must add 1 to get the correct month number.
+let month = now.getMonth() + 1;
 
 // STEP 8: Get the day of the month using .getDate()
+let date = now.getDate();
 
 // STEP 9: Get the year using .getFullYear()
+let year = now.getFullYear();
 
 // STEP 10: Build the date string: month + "/" + day + "/" + year
 //          Display it in the element with ID "myDate"
-
+document.getElementById("myDate").innerHTML = month + "/" + date + "/" + year;
 
 // ============================================
 //  PART 2: Elapsed Timer
